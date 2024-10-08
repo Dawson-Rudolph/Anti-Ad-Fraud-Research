@@ -3,7 +3,7 @@ Created 10/4/24
 
 @author Owen Heuschele
 
-A script to balance a dataset of clicks using SMOTE
+A script to process data before training
 """
 
 #not using some but may become necessary in future
@@ -12,7 +12,7 @@ import numpy as np
 import pandas as pd
 import matplotlib.pyplot as plt
 
-#define datatypes for none date data
+#define datatypes for non-datetime data
 dtypes = {
     'ip': 'uint32',
     'app': 'uint16',
@@ -24,7 +24,7 @@ dtypes = {
 
 #read train file, sets datatypes, should parse dates in relevent columns correctly, convert to dataframe
 #here I'm using sample to save space, actual training set is 'train.csv'
-dataset = pd.read_csv('train_sample.csv', dtype=dtypes, parse_dates=['click_time', 'attributed_time']) 
+dataset = pd.read_csv('train_sample.csv', dtype=dtypes, parse_dates=['click_time']) 
 
 #converts to date_time objects
 dataset['click_time'] = pd.to_datetime(dataset['click_time'])
@@ -38,8 +38,11 @@ dataset['day'], dataset['hour'], dataset['minute'], dataset['second'] = [
     dataset['click_time'].dt.second.astype('uint8')
 
 ]
-#I have currently opted not to clean attributed time, as it conveys the same info as is_attributed.
-#this can be changed but the method I found did not work as anticipated.
+
+#removes click_time and attributed_time from the dataframe
+#click_time is no longer necessary due to separation and creation of day, hour, minute, second
+#attributed_time is not necessary due to conveying the same information mathematically as is_attributed
+dataset.drop(columns=['click_time', 'attributed_time'])
 
 
 #below is simply code to make a pie chart and a line to make a corr matrix that I haven't had

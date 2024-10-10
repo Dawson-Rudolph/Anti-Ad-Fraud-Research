@@ -40,5 +40,5 @@ dataset['day'], dataset['hour'], dataset['minute'], dataset['second'] = [
 #removes click_time and attributed_time from the dataframe
 #click_time is no longer necessary due to separation and creation of day, hour, minute, second
 #attributed_time is not necessary due to conveying the same information mathematically as is_attributed
-dataset.drop(columns=['click_time', 'attributed_time'])
+dataset = dataset.drop(columns=['click_time', 'attributed_time'])
 

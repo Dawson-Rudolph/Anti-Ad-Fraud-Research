@@ -23,7 +23,7 @@ dtypes = {
 }
 
 #read train file, sets datatypes, should parse dates in relevent columns correctly, convert to dataframe
-#here I'm using sample to save space, actual training set is 'train.csv'
+#here I'm using sample to save space, actual training set is 'new_train.csv'
 dataset = pd.read_csv('train_sample.csv', dtype=dtypes, parse_dates=['click_time']) 
 
 #converts to date_time objects

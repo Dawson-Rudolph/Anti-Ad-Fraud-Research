@@ -22,7 +22,8 @@ dtypes = {
 }
 
 #read test file, sets datatypes, should parse dates in relevent columns correctly, convert to dataframe
-dataset = pd.read_csv('test.csv', dtype=dtypes, parse_dates=['click_time']) 
+#reads extracted 20% data stored in new_test.csv 
+dataset = pd.read_csv('new_test.csv', dtype=dtypes, parse_dates=['click_time']) 
 
 #converts to date_time objects
 dataset['click_time'] = pd.to_datetime(dataset['click_time'])

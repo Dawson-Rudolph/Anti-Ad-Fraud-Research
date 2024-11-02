@@ -20,11 +20,11 @@ def test_to_df(filename : str):
         'device': 'uint16',
         'os': 'uint32',
         'channel': 'uint32',
+        'is_attributed': 'uint8',
         'day': 'uint32',
         'hour': 'uint32',
         'minute': 'uint32',
         'second': 'uint32',
-        'click_id': 'uint64',
     }
 
     dataset : pd.DataFrame = pd.read_csv(filename, dtype=dtypes)
@@ -51,6 +51,7 @@ def train_to_df(filename : str):
 
     return dataset
 
+#deprecated
 def ref_to_df(filename : str):
 
     dtypes = {
